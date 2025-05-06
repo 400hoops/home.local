@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🏠 home.local</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600&display=swap&family=Material+Icons+Outlined&family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: rgb(47, 34, 37);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Overpass", sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        text-align: center;
+        user-select: none;
+        -webkit-touch-callout: none;
+      }
+
+      .clock {
+        font-size: 3rem;
+        font-weight: 700;
+      }
+
+      .date {
+        color: #cfcfcf;
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin-bottom: 2rem;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        outline: none;
+      }
+
+      .pages {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-start;
+        max-width: 600px;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        width: 100%;
+      }
+
+      .pages::-webkit-scrollbar {
+        display: none;
+      }
+
+      .page {
+        display: grid;
+        flex: 0 0 auto;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 0.5rem;
+        justify-items: center;
+        align-items: center;
+        min-width: 100%;
+        padding: 0.5rem 0;
+        scroll-snap-align: start;
+      }
+
+      .app {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+      }
+
+      .icon-wrapper {
+        background-color: rgb(60, 47, 49);
+        border: 1px solid rgb(105, 93, 95);
+        border-radius: 1.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 4.5rem;
+        margin: 0 auto;
+        transition: transform 0.2s ease;
+        width: 4.5rem;
+      }
+
+      .icon-wrapper:hover {
+        transform: scale(1.05);
+      }
+
+      .material-icons-outlined,
+      .material-symbols-outlined {
+        font-size: 2.25rem;
+      }
+
+      .app-name {
+        font-size: 0.75rem;
+        height: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .dots {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      .dot {
+        all: unset;
+        background-color: rgb(119, 119, 119);
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        height: 0.5rem;
+        transition: background-color 0.2s ease;
+        width: 0.5rem;
+      }
+
+      .dot.active {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock" id="clock"></div>
+    <div class="date" id="date"></div>
+
+    <div class="pages" id="pages">
+      <!-- Page 1 -->
+      <div class="page">
+        <div class="app">
+          <a
+            href="http://192.168.1.5:3000"
+            aria-label="Open AI Chat"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">forum</span>
+            </div>
+            <div class="app-name">AI Chat</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:8080"
+            aria-label="Open Books"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">import_contacts</span>
+            </div>
+            <div class="app-name">Books</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:443"
+            aria-label="Open Cloud"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-icons-outlined">cloud</span>
+            </div>
+            <div class="app-name">Cloud</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:9443"
+            aria-label="Open Containers"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">deployed_code</span>
+            </div>
+            <div class="app-name">Containers</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="smb://192.168.1.5"
+            aria-label="Open Files via SMB"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">folder</span>
+            </div>
+            <div class="app-name">Files</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:8920"
+            aria-label="Open Movies"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-icons-outlined">subscriptions</span>
+            </div>
+            <div class="app-name">Movies</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:4855"
+            aria-label="Open Passwords"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">password</span>
+            </div>
+            <div class="app-name">Passwords</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:2283"
+            aria-label="Open Photos"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">photo</span>
+            </div>
+            <div class="app-name">Photos</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="page">
+        <div class="app">
+          <a
+            href="http://192.168.1.1"
+            aria-label="Open Router"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-icons-outlined">router</span>
+            </div>
+            <div class="app-name">Router</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:5000"
+            aria-label="Open Search"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">search</span>
+            </div>
+            <div class="app-name">Search</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:8123"
+            aria-label="Open Smart Home"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-icons-outlined">home</span>
+            </div>
+            <div class="app-name">Smart Home</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:3001"
+            aria-label="Open Uptime Monitor"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">insert_chart</span>
+            </div>
+            <div class="app-name">Uptime</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:8006"
+            aria-label="Open Virtual Machines"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">memory</span>
+            </div>
+            <div class="app-name">Virtual Machines</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://192.168.1.5:51821"
+            aria-label="Open VPN Settings"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">vpn_key</span>
+            </div>
+            <div class="app-name">VPN</div>
+          </a>
+        </div>
+        <div class="app">
+          <a
+            href="http://settings.local"
+            aria-label="Open Settings"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="icon-wrapper">
+              <span class="material-symbols-outlined">settings</span>
+            </div>
+            <div class="app-name">Settings</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="dots"
+      id="dots"
+      role="tablist"
+      aria-label="Page navigation"
+    ></div>
+
+    <script>
+      const pages = document.getElementById("pages");
+      const dotsContainer = document.getElementById("dots");
+
+      function updateDots() {
+        const numPages = document.querySelectorAll(".page").length;
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i < numPages; i++) {
+          const dot = document.createElement("button");
+          dot.classList.add("dot");
+          dot.setAttribute("aria-label", `Go to page ${i + 1}`);
+          if (i === Math.round(pages.scrollLeft / pages.offsetWidth)) {
+            dot.classList.add("active");
+          }
+          dot.addEventListener("click", () => {
+            pages.scrollTo({
+              left: i * pages.offsetWidth,
+              behavior: "smooth",
+            });
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      window.addEventListener("load", () => {
+        updateDots();
+        updateClock();
+      });
+
+      pages.addEventListener("scroll", updateDots);
+
+      function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+        });
+        const dateString = now.toLocaleDateString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+        });
+
+        document.getElementById("clock").textContent = timeString;
+        document.getElementById("date").textContent = dateString;
+      }
+
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
